@@ -1,0 +1,534 @@
+$def with (params)
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+
+        <meta name="author" content="Nemesis Fixx [joewillrich (AT) gmail.com]">
+        <meta name="keywords" content="$params['APP_TITLE'],Word Game,JS 3D,Three.js">
+        <meta name="projectrepo" content="https://github.com/mcnemesis/fhunter" >
+        <meta name="project" content="$params['APP_TITLE']">
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <title>$params['APP_TITLE'] | Score : $params['score']</title>
+		<style>
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #000000;
+				margin: 0;
+                font-family: 'Marvel', sans-serif;
+				overflow: hidden;
+			}
+
+            #status {
+                color : rgba(255,255,204,0.5)
+            }
+
+			a {
+				color: #ffffff;
+			}
+
+			#info {
+				position: absolute;
+				width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				font-weight: bold;
+				text-align: center;
+				z-index: 1;
+			}
+
+			#menu {
+				position: absolute;
+				bottom: 20px;
+				width: 100%;
+				text-align: center;
+			}
+
+			.chosen {
+				width: 140px;
+				height: 180px;
+				box-shadow: 0px 0px 20px rgba(255,204,255,0.5);
+				border: 1px solid rgba(255,204,255,0.25);
+				cursor: default;
+			}
+
+            .chosen {
+            background-color: rgba(255, 153, 255, 0.541176) !important;
+            position: absolute;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform: translate3d(-50%, -50%, 0px) matrix3d(-0.49757102131843567, 0, 0.8674232363700867, 0, 0, -1, 0, 0, -0.8674232363700867, 0, -0.49757102131843567, 0, -954.16552734375, 402, -547.328125, 1);
+            }
+
+			.chosen:hover {
+				box-shadow: 0px 0px 20px rgba(255,220,255,0.75);
+				border: 1px solid rgba(255,204,255,0.75);
+			}
+
+
+            .chosen .number {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 20px;
+                color: rgba(255,204,255,0.75);
+            }
+
+            .chosen .details {
+                position: absolute;
+                top: 125px;
+                width: 100%;
+                font-size: 18px;
+                text-align: center;
+                color: rgba(255,204,255,0.75);
+            }
+
+            .chosen .symbol {
+                position: absolute;
+                top: 40px;
+                width: 100%;
+                font-size: 70px;
+                text-align: center;
+                color: rgba(255,255,255,0.75);
+                font-weight: bold;
+
+                -webkit-filter: drop-shadow(0px 0px 20px rgba(255,220,255,0.95));
+                -moz-filter: drop-shadow(0px 0px 20px rgba(255,220,255,0.95));
+                -o-filter: drop-shadow(0px 0px 20px rgba(255,220,255,0.95));
+                -ms-filter: drop-shadow(0px 0px 20px rgba(255,220,255,0.95));
+                filter: drop-shadow(0px 0px 20px rgba(255,220,255,0.95));
+            }
+
+
+			.element {
+				width: 140px;
+				height: 180px;
+				box-shadow: 0px 0px 20px rgba(0,255,255,0.5);
+				border: 1px solid rgba(127,255,255,0.25);
+				cursor: default;
+			}
+
+			.element:hover {
+				box-shadow: 0px 0px 20px rgba(0,255,255,0.75);
+				border: 1px solid rgba(127,255,255,0.75);
+			}
+
+				.element .number {
+					position: absolute;
+					top: 20px;
+					right: 20px;
+					font-size: 20px;
+					color: rgba(127,255,255,0.75);
+				}
+
+				.element .symbol {
+					position: absolute;
+					top: 40px;
+					width: 100%;
+					font-size: 70px;
+					text-align: center;
+					color: rgba(255,255,255,0.75);
+					font-weight: bold;
+
+					-webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
+					-moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
+					-o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
+					-ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
+					filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
+				}
+
+				.element .details {
+					position: absolute;
+					top: 125px;
+					width: 100%;
+					font-size: 18px;
+					text-align: center;
+					color: rgba(127,255,255,0.75);
+				}
+
+			button {
+				color: rgba(127,255,255,0.75);
+				background: transparent;
+				outline: 1px solid rgba(127,255,255,0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: rgba(0,255,255,0.5);
+			}
+			button:active {
+				color: #000000;
+				background-color: rgba(0,255,255,0.75);
+			}
+
+            #solution {
+				color: rgba(127,255,255,0.75);
+				background: transparent;
+				outline: 1px solid rgba(127,255,255,0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+
+            }
+
+
+			#pass {
+				color: rgba(255,100,200,0.75);
+				background: transparent;
+				outline: 1px solid rgba(255,200,200,0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			#pass:hover {
+				background-color: rgba(200,20,100,0.5);
+			}
+			#pass:active {
+				color: #000000;
+				background-color: rgba(200,20,100,0.5);
+			}
+		</style>
+	</head>
+	<body>
+		<script src="$params['BASE_URI']/static/js/three.js"></script>
+		<script src="$params['BASE_URI']/static/js/tween.js"></script>
+		<script src="$params['BASE_URI']/static/js/TrackballControls.js"></script>
+		<script src="$params['BASE_URI']/static/js/CSS3DRenderer.js"></script>
+
+        <div id="container">
+            <div id="solution" ><b>$params['APP_TITLE']</b> : Fortune Cookies are Awesome! So, let's mine some from these ruins!
+                <br/>
+                <small>
+                    <li>Select a view mode</li>
+                    <li>Click the pieces to construct or deconstruct the fortune</li>
+                    <li>Refreshing/Reloading <b>clears score</b>!</li>
+                    <li>*NEW* <a target="_blank" href="mailto:joewillrich@gmail.com">Feature Requests</a></li>
+                    <li>Enjoy the Challenge &amp; SHARE the FUN!</li>
+                </small>
+            </div>
+            
+        </div>
+		<div id="menu">
+            <div id="status">SCORE : <span class="score">$params['score']</span></div>
+			<button id="table">TABLE</button>
+			<button id="sphere">SPHERE</button>
+			<button id="helix">HELIX</button>
+			<button id="grid">GRID</button>
+            <form id="score_form" method="POST" action="$params['BASE_URI']">
+                <input type="hidden" name="score" id="score" value="$params['score']">
+                <button id="pass"> == PASS to NEXT == </button>
+            </form>
+		<script>
+
+            function shuffle(o){ //v1.0
+                for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+                return o;
+            };
+
+            var g = "$params['fortune']";
+            var _g = g.split(' ');
+            var answers = {};
+            var answer_count = 0;
+            var table = [];
+            var cols = 10;
+
+            shuffle( _g );
+
+            for ( var i = 0; i < _g.length; i ++ ) {
+                var w = _g[i];
+                var _w = w[Math.round(Math.random() * (w.length - 1))]
+                //[letter,word,other,col,row]
+                //table.push( [ _w, w, i > 0 ? _g[i-1] : "", (i % cols) + 1, Math.floor(i / cols) + 1])
+                table.push( [ _w, w, "", (i % cols) + 1, Math.floor(i / cols) + 1])
+            }
+
+
+			var camera, scene, renderer;
+			var controls;
+
+			var objects = [];
+			var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera.position.z = 1800;
+
+				scene = new THREE.Scene();
+
+				for ( var i = 0; i < table.length; i ++ ) {
+
+					var item = table[ i ];
+
+					var element = document.createElement( 'div' );
+					element.className = 'element';
+					element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
+					var number = document.createElement( 'div' );
+					number.className = 'number';
+					number.textContent = i + 1;
+					element.appendChild( number );
+
+					var symbol = document.createElement( 'div' );
+					symbol.className = 'symbol';
+					symbol.textContent = item[ 0 ];
+					element.appendChild( symbol );
+
+					var details = document.createElement( 'div' );
+					details.className = 'details';
+					details.innerHTML = item[ 1 ] + '<br>' + item[ 2 ];
+					element.appendChild( details );
+
+                    //events
+                    element.onclick = function(e){
+                        var solution = document.getElementById('solution');
+                        var detail = this.getElementsByClassName('details')[0].textContent;
+                        var index = '_' + this.getElementsByClassName('number')[0].textContent;
+                        
+                        if( index in answers) {
+                            var i = answers[index].i;
+
+                            delete answers[index];
+                            answer_count -= 1;
+                            this.className = "element";
+
+                            for(var a in answers){
+                                var _a = answers[a];
+                                if(_a.i > i){
+                                    _a.i = _a.i - 1
+                                }
+                            }
+                        }else {
+                            answers[index] = {'value' : detail, 'i' : answer_count };
+                            answer_count += 1;
+                            this.className = "chosen";
+                        }
+
+                        var sol = new Array( _g.length );
+
+                        for(var a in answers) {
+                            var _a = answers[a];
+                            sol[ _a.i ] = _a.value;
+                        }
+
+                        solution.innerHTML = sol.filter( function(o) { return o }).join(" ");
+                        
+                        if( solution.innerHTML == g) {
+                            alert("U HAVE WON!\n\nWill load for you the next challenge...")
+                            //update score
+                            var in_score = document.getElementById( 'score' );
+                            in_score.value = Number(in_score.value) + $params['SCORE_INCREMENT'];
+                            document.getElementById( 'score_form' ).submit();
+                        }
+
+                    }
+
+					var object = new THREE.CSS3DObject( element );
+					object.position.x = Math.random() * 4000 - 2000;
+					object.position.y = Math.random() * 4000 - 2000;
+					object.position.z = Math.random() * 4000 - 2000;
+					scene.add( object );
+
+					objects.push( object );
+
+				}
+
+				// table
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var item = table[ i ];
+
+					var object = new THREE.Object3D();
+					object.position.x = ( item[ 3 ] * 160 ) - 1540;
+					object.position.y = - ( item[ 4 ] * 200 ) + 1100;
+
+					targets.table.push( object );
+
+				}
+
+				// sphere
+
+				var vector = new THREE.Vector3();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var phi = Math.acos( -1 + ( 2 * i ) / l );
+					var theta = Math.sqrt( l * Math.PI ) * phi;
+
+					var object = new THREE.Object3D();
+
+					object.position.x = 1000 * Math.cos( theta ) * Math.sin( phi );
+					object.position.y = 1000 * Math.sin( theta ) * Math.sin( phi );
+					object.position.z = 1000 * Math.cos( phi );
+
+					vector.copy( object.position ).multiplyScalar( 2 );
+
+					object.lookAt( vector );
+
+					targets.sphere.push( object );
+
+				}
+
+				// helix
+
+				var vector = new THREE.Vector3();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var phi = i * 0.175 + Math.PI;
+
+					var object = new THREE.Object3D();
+
+					object.position.x = 1100 * Math.sin( phi );
+					object.position.y = - ( i * 8 ) + 450;
+					object.position.z = 1100 * Math.cos( phi );
+
+					vector.copy( object.position );
+					vector.x *= 2;
+					vector.z *= 2;
+
+					object.lookAt( vector );
+
+					targets.helix.push( object );
+
+				}
+
+				// grid
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = new THREE.Object3D();
+
+					object.position.x = ( ( i % 5 ) * 400 ) - 800;
+					object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;
+					object.position.z = ( Math.floor( i / 25 ) ) * 1000 - 2000;
+
+					targets.grid.push( object );
+
+				}
+
+				//
+
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+				//
+
+				controls = new THREE.TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 0.5;
+				controls.addEventListener( 'change', render );
+
+				var button = document.getElementById( 'table' );
+				button.addEventListener( 'click', function ( event ) {
+
+					transform( targets.table, 2000 );
+
+				}, false );
+
+				var button = document.getElementById( 'sphere' );
+				button.addEventListener( 'click', function ( event ) {
+
+					transform( targets.sphere, 2000 );
+
+				}, false );
+
+				var button = document.getElementById( 'helix' );
+				button.addEventListener( 'click', function ( event ) {
+
+					transform( targets.helix, 2000 );
+
+				}, false );
+
+				var button = document.getElementById( 'grid' );
+				button.addEventListener( 'click', function ( event ) {
+
+					transform( targets.grid, 2000 );
+
+				}, false );
+
+                
+
+                //the pass button
+				var button = document.getElementById( 'pass' );
+				button.addEventListener( 'click', function ( event ) {
+                    var in_score = document.getElementById( 'score' );
+                    in_score.value = Number(in_score.value) - $params['PASS_PENALTY'];
+                    document.getElementById( 'score_form' ).submit();
+				}, false );
+
+				transform( targets.table, 5000 );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function transform( targets, duration ) {
+
+				TWEEN.removeAll();
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = objects[ i ];
+					var target = targets[ i ];
+
+					new TWEEN.Tween( object.position )
+						.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				}
+
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				TWEEN.update();
+				controls.update();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	
+
+</div></body></html>
