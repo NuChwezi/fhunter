@@ -16,6 +16,9 @@ HOW TO PLAY
 
 [PLAY FORTUNE HUNTER](http://logbots.mobi/fhunter) here for FREE!
 
+![Fortune Hunter - spherical mode screenshot](https://github.com/mcnemesis/fhunter/raw/master/screenshots/FortuneHunter2.png "Fortune Hunter - spherical mode")
+
+
 
 
 * Load the GAME (Recommending a decent Chrome)
@@ -25,6 +28,8 @@ HOW TO PLAY
 * Once the correct fortune is constructed, you get your reward, and a bonus challenge!
 * Try becoming the fortune philosopher or a witticism slayer!
 * If you should fail at a challenge, don't despair, there's always a pass to the next life...
+
+![Fortune Hunter - helix mode screenshot](https://github.com/mcnemesis/fhunter/raw/master/screenshots/FortuneHunter.png "Fortune Hunter - helix mode")
 
 
 Credit Where It's Due
