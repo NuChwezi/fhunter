@@ -24,19 +24,6 @@ def record_hit(hit):
             method = hit['method'] )
     return new_id
 
-#------------- utils ---------------
-def j_e(msg,status='401 Invalid',**kwargs):
-    d = {'payload' : msg,'status':401}
-    d.update(kwargs)
-    web.status = status
-    return json.dumps(d)
-
-def j_s(msg,status='200 OK',**kwargs):
-    d = {'payload' : msg, 'status':200}
-    d.update(kwargs)
-    web.status = status
-    return json.dumps(d)
-
 #--------- Templates ----------
 render = web.template.render('/var/opt/fhunter/templates/', cache=False)
 
