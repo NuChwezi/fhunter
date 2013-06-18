@@ -8,6 +8,7 @@ $def with (params)
         <meta name="keywords" content="$params['APP_TITLE'],Word Game,JS 3D,Three.js">
         <meta name="projectrepo" content="https://github.com/mcnemesis/fhunter" >
         <meta name="project" content="$params['APP_TITLE']">
+        <link href='http://fonts.googleapis.com/css?family=Marvel' rel='stylesheet' type='text/css'>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <title>$params['APP_TITLE'] | Score : $params['score']</title>
@@ -19,7 +20,7 @@ $def with (params)
 			body {
 				background-color: #000000;
 				margin: 0;
-                font-family: 'Marvel', sans-serif;
+                font-family: sans-serif;
 				overflow: hidden;
 			}
 
@@ -174,7 +175,8 @@ $def with (params)
 				border: 0px;
 				padding: 5px 10px;
 				cursor: pointer;
-
+                font-size : 20px;
+                font-family: 'Marvel', sans-serif;
             }
 
 
@@ -202,13 +204,13 @@ $def with (params)
 		<script src="$params['BASE_URI']/static/js/CSS3DRenderer.js"></script>
 
         <div id="container">
-            <div id="solution" ><b>$params['APP_TITLE']</b> : Fortune Cookies are Awesome! So, let's mine some from these ruins!
+            <div id="solution" ><h3>$params['APP_TITLE']</h3> : Fortune Cookies are Awesome! So, let's mine some from these ruins!
                 <br/>
                 <small>
                     <li>I recommend playing this in Google Chrome [or a modern browser]</li>
                     <li>Select a view mode</li>
                     <li>Click the pieces to construct or deconstruct the fortune</li>
-                    <li>Refreshing/Reloading <b>clears score</b>!</li>
+                    <li>Refreshing / Reloading <b>clears score</b>!</li>
                     <li>*NEW* <a target="_blank" href="mailto:joewillrich@gmail.com">Feature Requests</a></li>
                     <li>*CLONE* <a target="_blank" href="https://github.com/mcnemesis/fhunter">ME on GITHUB</a></li>
                     <li>Enjoy the Challenge &amp; SHARE the FUN!</li>
