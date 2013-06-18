@@ -52,7 +52,8 @@ class fhunter:
             'fortune' : ' '.join( fortune ).strip(),
             'score' : params.score or 0,
             'SCORE_INCREMENT' : SCORE_INCREMENT * (( len(fortune) / 10 ) or 1),
-            'PASS_PENALTY' : PASS_PENALTY * (( len(fortune) / 10 ) or 1)
+            'PASS_PENALTY' : PASS_PENALTY * (( len(fortune) / 10 ) or 1),
+            'continue' : True
             })
     def GET(self):
         web.ctx.status = '200 OK'
@@ -71,7 +72,8 @@ class fhunter:
             'fortune' : ' '.join( fortune ).strip(),
             'score' : 0,
             'SCORE_INCREMENT' : SCORE_INCREMENT * (( len(fortune) / 10 ) or 1),
-            'PASS_PENALTY' : PASS_PENALTY * (( len(fortune) / 10 ) or 1)
+            'PASS_PENALTY' : PASS_PENALTY * (( len(fortune) / 10 ) or 1),
+            'continue' : False
             })
 
 

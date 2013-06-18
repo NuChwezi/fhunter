@@ -204,17 +204,19 @@ $def with (params)
 		<script src="$params['BASE_URI']/static/js/CSS3DRenderer.js"></script>
 
         <div id="container">
-            <div id="solution" ><h3>$params['APP_TITLE']</h3> : Fortune Cookies are Awesome! So, let's mine some from these ruins!
-                <br/>
-                <small>
-                    <li>I recommend playing this in Google Chrome [or a modern browser]</li>
-                    <li>Select a view mode</li>
-                    <li>Click the pieces to construct or deconstruct the fortune</li>
-                    <li>Refreshing / Reloading <b>clears score</b>!</li>
-                    <li>*NEW* <a target="_blank" href="mailto:joewillrich@gmail.com">Feature Requests</a></li>
-                    <li>*CLONE* <a target="_blank" href="https://github.com/mcnemesis/fhunter">ME on GITHUB</a></li>
-                    <li>Enjoy the Challenge &amp; SHARE the FUN!</li>
-                </small>
+            <div id="solution" ><h3>$params['APP_TITLE']</h3> 
+                $if not params['continue']:
+                    : Fortune Cookies are Awesome! So, let's mine some from these ruins!
+                    <br/>
+                    <small>
+                        <li>I recommend playing this in Google Chrome [or a modern browser]</li>
+                        <li>Select a view mode</li>
+                        <li>Click the pieces to construct or deconstruct the fortune</li>
+                        <li>Refreshing / Reloading <b>clears score</b>!</li>
+                        <li>*NEW* <a target="_blank" href="mailto:joewillrich@gmail.com">Feature Requests</a></li>
+                        <li>*CLONE* <a target="_blank" href="https://github.com/mcnemesis/fhunter">ME on GITHUB</a></li>
+                        <li>Enjoy the Challenge &amp; SHARE the FUN!</li>
+                    </small>
             </div>
             
         </div>
