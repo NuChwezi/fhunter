@@ -2,6 +2,7 @@ import json
 import web
 import subprocess
 import re
+import socket
 
 urls = (
   '', 'fhunter',
@@ -10,7 +11,10 @@ urls = (
 )
 
 #------------- STATIC --------------
-BASE_URI = '/fhunter'
+BASE_URI = ''
+SERVER_HOSTNAME = socket.gethostname()
+if SERVER_HOSTNAME == 'matrix.nuchwezi':
+    BASE_URI = '/fhunter'
 APP_TITLE = 'FORTUNE HUNTER'
 
 #------------- DB -------------
