@@ -78,6 +78,8 @@ class fhunter:
 
 
 application = web.application(urls, globals()).wsgifunc()
-
 web.webapi.internalerror = web.debugerror
-if __name__ == '__main__': application.run()
+
+if __name__ == '__main__':
+    application = web.application(urls, globals())
+    application.run()
