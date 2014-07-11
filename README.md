@@ -4,7 +4,7 @@ FORTUNE HUNTER
 A fun and enlightening expedition for those that wish to mine Unix Fortune Cookies!
 
 
-What it IS
+What it Is
 -----------
 
 [Unix Fortune Cookies](http://en.wikipedia.org/wiki/Fortune_(Unix) have been around since you know when, and we all love cookies and lots of fortune (especially in the middle of insanely buggy projects). 
