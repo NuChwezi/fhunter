@@ -14,7 +14,7 @@ Fortune Hunter is the Game that gives you the opportunity to attack from the oth
 HOW TO PLAY
 -------------
 
-[PLAY FORTUNE HUNTER](http://logbots.mobi/fhunter) here for FREE!
+[PLAY FORTUNE HUNTER](http://fhunter.nuchwezi.com/) here for FREE!
 
 ![Fortune Hunter - spherical mode screenshot](https://github.com/mcnemesis/fhunter/raw/master/screenshots/FortuneHunter2.png "Fortune Hunter - spherical mode")
 
