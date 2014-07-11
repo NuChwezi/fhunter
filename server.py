@@ -14,7 +14,7 @@ BASE_URI = '/fhunter'
 APP_TITLE = 'FORTUNE HUNTER'
 
 #------------- DB -------------
-db = web.database(dbn='postgres', user='postgres', pw='postgres', db='fhunter')
+db = web.database(dbn='postgres', user='postgres', pw='postgres', db='fhunter', host='localhost')
 
 def record_hit(hit):
     new_id = db.insert('fhunter_hits',seqname='fhunter_hits_id_seq',
