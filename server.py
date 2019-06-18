@@ -18,7 +18,7 @@ if SERVER_HOSTNAME == 'matrix.nuchwezi':
 APP_TITLE = 'FORTUNE HUNTER'
 
 #------------- DB -------------
-db = web.database(dbn='postgres', user='postgres', pw='postgres', db='fhunter', host='localhost')
+db = web.database(dbn='DB', user='USER', pw='PASSWORD', db='fhunter', host='localhost')
 
 def record_hit(hit):
     new_id = db.insert('fhunter_hits',seqname='fhunter_hits_id_seq',
